@@ -52,14 +52,15 @@
   </div>
 </header>
 
-<div class="ticker-wrap">
-  <div class="ticker">
-    <span><b>Nudge:</b> Marcus Webb hasn't been recognized in 60 days — consider a shout-out.</span>
-    <span><b>Recommendation:</b> Kiran Iyer's flake-rate work this sprint is worth a Customer First.</span>
-    <span><b>Nudge:</b> Two of your team members have sent zero recognitions this quarter.</span>
-    <span><b>Nudge:</b> Marcus Webb hasn't been recognized in 60 days — consider a shout-out.</span>
-    <span><b>Recommendation:</b> Kiran Iyer's flake-rate work this sprint is worth a Customer First.</span>
-    <span><b>Nudge:</b> Two of your team members have sent zero recognitions this quarter.</span>
+<div class="ticker-wrap" id="nudge">
+  <div class="nudge">
+    <span class="n-ic">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+    </span>
+    <span class="n-text"><b>Last recognition sent — 13 days ago</b><span>Time to send some kudos</span></span>
+    <button class="n-x" type="button" id="nudge-close" aria-label="Dismiss">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
   </div>
 </div>
 
@@ -248,7 +249,16 @@
     dots.forEach((d, k) => d.classList.toggle('on', k === i));
   };
   dots.forEach((d, k) => d.addEventListener('click', () => { go(k); clearInterval(t); t = setInterval(() => go(i + 1), 6000); }));
-  t = setInterval(() => go(i + 1), 6000);
+        t = setInterval(() => go(i + 1), 6000);
+})();
+</script>
+<script>
+(() => {
+  const wrap = document.getElementById('nudge');
+  document.getElementById('nudge-close').addEventListener('click', () => {
+    wrap.classList.add('leaving');
+    setTimeout(() => wrap.remove(), 350);
+  });
 })();
 </script>
 </body>

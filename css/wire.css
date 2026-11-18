@@ -100,11 +100,22 @@ a { color: inherit; }
 .ticker-wrap {
   margin: 10px auto 0; width: min(1560px, calc(100% - 40px));
   background: var(--gold-soft); border: 1px solid #f3e2b7; border-radius: 14px;
-  overflow: hidden; padding: 7px 0;
+  overflow: hidden; padding: 9px 14px;
 }
-.ticker { display: flex; gap: 56px; white-space: nowrap; animation: tick 30s linear infinite; width: max-content; }
-.ticker span { font-size: 12.5px; color: var(--gold-ink); }
-.ticker b { font-weight: 600; }
+.nudge { display: flex; align-items: center; gap: 12px; transition: opacity 0.3s ease, max-height 0.35s ease; }
+.ticker-wrap.leaving { opacity: 0; }
+.nudge .n-ic { flex: none; width: 30px; height: 30px; border-radius: 999px; background: rgba(255, 178, 36, 0.35); color: var(--gold-ink); display: grid; place-items: center; }
+.nudge .n-ic svg { width: 16px; height: 16px; }
+.nudge .n-text { font-size: 13px; color: var(--gold-ink); }
+.nudge .n-text b { font-weight: 800; font-size: 13.5px; }
+.nudge .n-text span { display: block; font-size: 11.5px; opacity: 0.85; }
+.nudge .n-x {
+  margin-left: auto; flex: none; border: none; background: rgba(255, 178, 36, 0.3);
+  color: var(--gold-ink); width: 26px; height: 26px; border-radius: 999px;
+  display: grid; place-items: center; cursor: pointer; transition: background 0.15s ease;
+}
+.nudge .n-x svg { width: 13px; height: 13px; }
+.nudge .n-x:hover { background: rgba(255, 178, 36, 0.55); }
 @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 /* ---------- landing row: video left, My Feed right, wallet below video ---------- */
